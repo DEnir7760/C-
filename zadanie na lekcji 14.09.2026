@@ -1,0 +1,63 @@
+#include <iostream>
+
+using namespace std;
+
+/*
+nazwa funkcji : sortowanie
+
+parametry wejściowe : tablica[] tablica typu int do posortowania
+
+n- liczba elementów w tablicy
+
+parametry wyjściowe : tablica[] tablica posortowana typu int
+
+wartość zwracana : funkcja nie zwraca nic bo ma typ void
+*/
+
+
+void sortowanie(int tab[], int n)
+{
+    int i, j, p;
+
+    for (j = 0; j < n - 1; j++)
+    {
+        for (i = 0; i < n - 1 - j; i++)
+        {
+            if (tab[i] > tab[i + 1])
+            {
+                p = tab[i];
+                tab[i] = tab[i + 1];
+                tab[i + 1] = p;
+            }
+        }
+    }
+}
+
+int main() {
+    setlocale(LC_ALL, "pl_PL");
+
+    int tab[10];
+
+    cout << "Podaj 10 liczb: ";
+
+    for (int i = 0; i < 10; i++)
+    {
+        cin >> tab[i];
+    }
+
+    cout << "Tablica przed sortowaniem: ";
+    for (int i = 0; i < 10; i++)
+    {
+        cout << tab[i] << " ";
+    }
+
+    sortowanie(tab, 10);
+
+    cout << "Tablica po sortowaniu: ";
+    for (int i = 0; i < 10; i++)
+    {
+        cout << tab[i] << " ";
+    }
+
+    return 0;
+}
