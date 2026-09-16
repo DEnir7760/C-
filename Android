@@ -1,0 +1,28 @@
+package com.example.projekt_kotlin
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.ListView
+
+class MainActivity : AppCompatActivity() {
+
+   private lateinit var simpleListView: ListView
+   private val fruitName = arrayOf("Apple" , "Watermelon" , "Orange" , "Strawberry" , "Grape")
+    private val fruitImages = intArrayOf(R.drawable.jablko, R.drawable.arbuz, R.drawable.pomarancza, R.drawable.truskawka, R.drawable.winogron)
+    
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        
+        simpleListView = findViewById(R.id.simplelistview)
+        val arrayList: ArrayList<HashMap<String, String>> = ArrayList()
+        for(i in fruitName.indices) {
+              val hashMap: HashMap<String, String> = HashMap() 
+              hashMap["name"]=fruitName[i]
+              hashMap["image"]=fruitName[i].toString()
+              arrayList.add(hashMap)
+            }
+        }
+    }
+
