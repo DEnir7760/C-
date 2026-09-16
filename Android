@@ -3,26 +3,35 @@ package com.example.projekt_kotlin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
+import android.widget.SimpleAdapter
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
    private lateinit var simpleListView: ListView
    private val fruitName = arrayOf("Apple" , "Watermelon" , "Orange" , "Strawberry" , "Grape")
     private val fruitImages = intArrayOf(R.drawable.jablko, R.drawable.arbuz, R.drawable.pomarancza, R.drawable.truskawka, R.drawable.winogron)
-    
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         simpleListView = findViewById(R.id.simplelistview)
         val arrayList: ArrayList<HashMap<String, String>> = ArrayList()
         for(i in fruitName.indices) {
-              val hashMap: HashMap<String, String> = HashMap() 
+              val hashMap: HashMap<String, String> = HashMap()
               hashMap["name"]=fruitName[i]
-              hashMap["image"]=fruitName[i].toString()
+              hashMap["image"]=fruitImages[i].toString()
               arrayList.add(hashMap)
             }
+
+        val from = arrayOf("name", "image")
+        val to = intArrayOf(R.id.textView, R.id.imageView)
+        val simpleAdapter = SimpleAdapter(this, arrayList, R.layout.list_view_items, from, to)
+        simpleListView.adapter = simpleAdapter
+
+        simpleListView.setOnItemClickListener{adapterView, view, i, l -> Toast.makeText(applicationContext, fruitName[i], Toast.LENGTH_LONG).show()}
+
         }
     }
-
