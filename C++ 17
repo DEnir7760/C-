@@ -1,0 +1,62 @@
+#include <iostream>
+
+using namespace std;
+
+//statyczne zmienne członkowskie
+//Są to elementy wspólne dla wszystkich obiektów klasy // static nie równa się const statyczne jest do wszystkich ale zmienny element
+
+
+// Definicja klasy 
+class Pracownik {
+public: //specyfikator dostępu
+	//Deklaracje statycznych zmiennych członkowskich
+	static string s_szkola;
+	//deklaracje zmiennych
+	string imie, nazwisko;
+	//Prototyp (deklaracja) funkcji członkowskich (metod)
+
+	void wyswietlDane();
+};
+
+//Inicjalizacja zmiennych statycznych
+// :: - operator zakresu
+string Pracownik::s_szkola = "Technikum SPSK";
+
+int main() {
+	setlocale(LC_ALL, "pl_PL");
+	Pracownik p1;
+	p1.imie = "Jan";
+	p1.nazwisko = "Kowalski";
+	cout << "Dane Pracownika p1: " << endl;
+	p1.wyswietlDane();
+
+	Pracownik p2;
+	p2.imie = "Andrzej";
+	p2.nazwisko = "Nowak";
+	cout << "Dane Pracownika p2: " << endl;
+	p2.wyswietlDane();
+
+
+	
+
+	Pracownik::s_szkola = "Gimnazjum SPSK";
+	
+	Pracownik p3;
+	p3.imie = "Mirosław";
+	p3.nazwisko = "Trelowski";
+	cout << "Dane Pracownika p3: " << endl;
+	p3.wyswietlDane();
+
+
+
+
+	return 0;
+}
+
+void Pracownik::wyswietlDane()
+{
+	cout << "Dane Pracownika: " << endl;
+	cout << "Imię: " << imie << endl;
+	cout << "Nazwisko: " << nazwisko << endl;
+	cout << "Szkoła: " << s_szkola << endl;
+}
