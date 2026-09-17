@@ -1,0 +1,59 @@
+#include <iostream>
+
+using namespace std;
+
+
+
+class Uczen {
+public:
+	static string s_klasa;
+	static string s_zawod;
+	
+	string imie, nazwisko;
+
+
+
+	
+
+
+	void wyswietlDane();
+};
+
+string Uczen::s_klasa = "Vb";
+string Uczen::s_zawod = "Tehnik Logistyk";
+
+
+int main() {
+	setlocale(LC_ALL, "pl_PL");
+	Uczen p1;
+	p1.imie = "Jan";
+	p1.nazwisko = "Kowalski";
+	cout << "Dane Ucznia p1: " << endl;
+	p1.wyswietlDane();
+
+	Uczen p2;
+	p2.imie = "Andrzej";
+	p2.nazwisko = "Nowak";
+	cout << "Dane Ucznia p2: " << endl;
+	p2.wyswietlDane();
+
+	Uczen p3;
+	p3.imie = "Mirosław";
+	p3.nazwisko = "Trelowski";
+	cout << "Dane Ucznia p3: " << endl;
+	p3.wyswietlDane();
+
+
+
+
+	return 0;
+}
+
+void Uczen::wyswietlDane()
+{
+	cout << "Dane Ucznia: " << endl;
+	cout << "Imię: " << imie << endl;
+	cout << "Nazwisko: " << nazwisko << endl;
+	cout << "Klasa: " << s_klasa << endl;
+	cout << "Zawód: " << s_zawod << endl;
+}
