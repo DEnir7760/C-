@@ -1,0 +1,85 @@
+#include <iostream>
+
+using namespace std;
+
+void sortowanie(int tab[], int n)
+{
+    int i, j, p;
+
+    for (j = 0; j < n - 1; j++)
+    {
+        for (i = 0; i < n - 1 - j; i++)
+        {
+            if (tab[i] > tab[i + 1])
+            {
+                p = tab[i];
+                tab[i] = tab[i + 1];
+                tab[i + 1] = p;
+            }
+        }
+    }
+}
+
+int main()
+{
+    setlocale(LC_ALL, "pl_PL");
+
+    int tab[10];
+
+    cout << "Podaj 10 liczb: ";
+
+    for (int i = 0; i < 10; i++)
+    {
+        cin >> tab[i];
+    }
+
+    cout << "Tablica przed sortowaniem: ";
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << tab[i] << " ";
+    }
+
+    sortowanie(tab, 10);
+
+    cout << endl << "Tablica po sortowaniu: ";
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << tab[i] << " ";
+    }
+
+    cout << endl;
+
+    int x;
+
+    cout << "Podaj szukana liczbe: ";
+    cin >> x;
+
+    int l = 0;
+    int p = 9;
+
+    while (l <= p)
+    {
+        int s = (l + p) / 2;
+
+        if (tab[s] == x)
+        {
+            cout << "Liczba znajduje się na " << s + 1 << " miejscu";
+            return 0;
+        }
+
+        if (tab[s] < x)
+        {
+            l = s + 1;
+        }
+        else
+        {
+            p = s - 1;
+        }
+    }
+
+    cout << "Nie znaleziono";
+
+    return 0;
+}
