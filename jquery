@@ -1,0 +1,19 @@
+// użycie wartości atrybutu
+/*
+[atrybut] element o zadanym atrybucie , którego wartość jest dowolna.
+[atrybut = 'wartość'] element o zadanym atrybucie , którego wartość jest określona
+[atrybut != 'wartość'] element o zadanym atrybucie , który nie zawiera określonej wartości
+[atrybut ^= 'wartość'] element o zadanym atrybucie , który rozpoczyna się od podanej wartości
+[atrybut $= 'wartość'] element o zadanym atrybucie , który kończy się podaną wartością
+[atrybut *= 'wartość'] element o zadanym atrybucie , który zawiera podaną wartość
+[atrybut ~= 'wartość'] element o zadanym atrybucie , którego wartość znajduje się na liście
+
+
+
+*/
+
+
+$('[type="checkbox"]').on('change', function() {
+    $('input').removeAttr('disabled');
+});
+//można usuwać atrybuty
