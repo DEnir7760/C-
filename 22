@@ -1,0 +1,85 @@
+package com.example.projekt_kotlin
+
+import android.content.Context
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.ListView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+
+data class FruitItem(
+    val nazwa: String,
+    val zdj: Int,
+    var ilosc: Int
+)
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var simpleListView: ListView
+    private val fruitsList = ArrayList<FruitItem>()
+    private lateinit var adapter: FruitAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        simpleListView = findViewById(R.id.simpleListView)
+
+
+        fruitsList.add(FruitItem("Arbuz", R.drawable.arbuz, 0))
+        fruitsList.add(FruitItem("Jabłko", R.drawable.jablko, 0))
+        fruitsList.add(FruitItem("Truskawla", R.drawable.truskawka, 0))
+        fruitsList.add(FruitItem("Winogron", R.drawable.winogron, 0))
+        fruitsList.add(FruitItem("Pomarańcza", R.drawable.pomarancza, 0))
+
+
+        adapter = FruitAdapter(this, fruitsList)
+        simpleListView.adapter = adapter
+    }
+}
+
+class FruitAdapter(
+    context: Context,
+    private val items: ArrayList<FruitItem>
+) : ArrayAdapter<FruitItem>(context, 0, items) {
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.list_view_items, parent, false)
+
+        val item = items[position]
+
+        val imgFruit = view.findViewById<ImageView>(R.id.imageView)
+        val tvName = view.findViewById<TextView>(R.id.textView)
+        val tvQuantity = view.findViewById<TextView>(R.id.ilosc)
+        val btnPlus = view.findViewById<ImageView>(R.id.Plus)
+        val btnDelete = view.findViewById<ImageView>(R.id.usun)
+
+
+        imgFruit.setImageResource(item.zdj)
+        tvName.text = item.nazwa
+        tvQuantity.text = "${item.ilosc} sztuki:"
+
+
+        btnPlus.setOnClickListener {
+            item.ilosc++
+            notifyDataSetChanged()
+            Toast.makeText(context, "${item.nazwa} - ilosc: ${item.ilosc} sztuki:", Toast.LENGTH_SHORT).show()
+        }
+
+
+        btnDelete.setOnClickListener {
+            val kasuj = item.nazwa
+            items.removeAt(position)
+            notifyDataSetChanged()
+            Toast.makeText(context, "Skasowano: $kasuj", Toast.LENGTH_SHORT).show()
+        }
+
+        return view
+    }
+}
